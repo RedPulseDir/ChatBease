@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ChatBease - Видеочат</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1><i class="fas fa-comments"></i> ChatBease</h1>
+            <p class="subtitle">Безопасный видеочат для общения</p>
+        </header>
+        
+        <main class="main-content">
+            <div class="actions-grid">
+                <div class="action-card private">
+                    <i class="fas fa-user-friends"></i>
+                    <h3>Приватная комната</h3>
+                    <p>Создайте комнату для общения 1 на 1</p>
+                    <button class="btn-primary" onclick="createRoom('private')">
+                        <i class="fas fa-plus"></i> Создать комнату
+                    </button>
+                </div>
+                
+                <div class="action-card group">
+                    <i class="fas fa-users"></i>
+                    <h3>Групповая комната</h3>
+                    <p>Создайте комнату для общения с друзьями</p>
+                    <button class="btn-secondary" onclick="createRoom('group')">
+                        <i class="fas fa-plus"></i> Создать групповую комнату
+                    </button>
+                </div>
+            </div>
+            
+            <div class="join-section">
+                <h2><i class="fas fa-sign-in-alt"></i> Присоединиться к комнате</h2>
+                <div class="join-form">
+                    <input 
+                        type="text" 
+                        id="roomCodeInput" 
+                        placeholder="Введите код комнаты (например: P3A7B9X)"
+                        class="code-input"
+                    >
+                    <div class="join-buttons">
+                        <button class="btn-join" onclick="joinRoom()">
+                            <i class="fas fa-door-open"></i> Присоединиться
+                        </button>
+                        <button class="btn-join-group" onclick="joinGroupRoom()">
+                            <i class="fas fa-users"></i> Присоединиться к группе
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="roomInfo" class="room-info hidden">
+                <h3><i class="fas fa-link"></i> Ваша комната создана!</h3>
+                <div class="code-display">
+                    <span id="roomIdDisplay" class="room-code"></span>
+                    <button class="btn-copy" onclick="copyRoomCode()">
+                        <i class="far fa-copy"></i> Копировать
+                    </button>
+                </div>
+                <p class="invite-text">Поделитесь этим кодом с другом:</p>
+                <div class="invite-link">
+                    <input type="text" id="inviteLink" readonly class="link-input">
+                    <button class="btn-copy-link" onclick="copyInviteLink()">
+                        <i class="fas fa-share-alt"></i>
+                    </button>
+                </div>
+                <button class="btn-enter" onclick="enterRoom()">
+                    <i class="fas fa-video"></i> Войти в комнату
+                </button>
+            </div>
+            
+            <div id="errorContainer" class="error-container hidden"></div>
+        </main>
+        
+        <footer class="footer">
+            <p>© 2024 ChatBease. Все права защищены.</p>
+            <p class="features">
+                <i class="fas fa-shield-alt"></i> Безопасно • 
+                <i class="fas fa-video"></i> Видеочат • 
+                <i class="fas fa-microphone"></i> Голосовой чат
+            </p>
+        </footer>
+    </div>
+    
+    <script src="https://cdn.socket.io/4.7.2/socket.io.min.js"></script>
+    <script src="../src/app.js"></script>
+</body>
+                      </html>
